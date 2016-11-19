@@ -1,8 +1,487 @@
 ﻿@model DnDDMTools.Models.PlayerModel
 @{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Character Creation";
 }
+<div class="col-md-12">
+    <div class="col-md-6">
+        <input typeof="text" id="errors" style="display:none;" readonly />
+        @Html.DropDownListFor(p => p.Race, new SelectList(ViewBag.Race, "Value", "Text"), "Select a Race", new { @id = "main-race" })
+        @Html.DropDownListFor(p => p.SubRace, Enumerable.Empty<SelectListItem>(), "Select a Subrace", new { @id = "sub-race", @style = "display:none;" })
+        @Html.DropDownListFor(p => p.Level, new SelectList(ViewBag.Levels, "Value", "Text"), "Select Level", new { @id = "main-level", @style = "display:none;" })
+        @Html.DropDownList("StatMethod", new SelectList(ViewBag.StatMethod, "Value", "Text"), "Stat allocation method", new { @id = "stat-method", @style = "display:none;" })
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+
+        <div class="col-md-12">
+            <p style="display:none;" class="point-buy-label">Points Left</p>
+            <input typeof="text" value="27" id="point-total" style="display:none;" readonly />
+        </div>
+
+        <div class="col-md-12">
+            <p style="display:none;" class="point-buy-label">Strength</p>
+            <button id="man-input-str-btn-up" style="display:none;">+</button>
+            <input type="text" id="man-input-str" style="display:none;" readonly />
+            <button id="man-input-str-btn-down" style="display:none;">-</button>
+        </div>
+
+        <div class="col-md-12">
+            <p style="display:none;" class="point-buy-label">Dexterity</p>
+            <button id="man-input-dex-btn-up" style="display:none;">+</button>
+            <input type="text" id="man-input-dex" style="display:none;" readonly />
+            <button id="man-input-dex-btn-down" style="display:none;">-</button>
+        </div>
+
+        <div class="col-md-12">
+            <p style="display:none;" class="point-buy-label">Constitution</p>
+            <button id="man-input-con-btn-up" style="display:none;">+</button>
+            <input type="text" id="man-input-con" style="display:none;" readonly />
+            <button id="man-input-con-btn-down" style="display:none;">-</button>
+        </div>
+
+        <div class="col-md-12">
+            <p style="display:none;" class="point-buy-label">Intelligence</p>
+            <button id="man-input-int-btn-up" style="display:none;">+</button>
+            <input type="text" id="man-input-int" style="display:none;" readonly />
+            <button id="man-input-int-btn-down" style="display:none;">-</button>
+        </div>
+
+        <div class="col-md-12">
+            <p style="display:none;" class="point-buy-label">Wisdom</p>
+            <button id="man-input-wis-btn-up" style="display:none;">+</button>
+            <input type="text" id="man-input-wis" style="display:none;" readonly />
+            <button id="man-input-wis-btn-down" style="display:none;">-</button>
+        </div>
+
+        <div class="col-md-12">
+            <p style="display:none;" class="point-buy-label">Charisma</p>
+            <button id="man-input-cha-btn-up" style="display:none;">+</button>
+            <input type="text" id="man-input-cha" style="display:none;" readonly />
+            <button id="man-input-cha-btn-down" style="display:none;">-</button>
+        </div>
+    </div>
+
+</div>
 
 
 
 
+
+<script>
+    $(document).ready(function () {
+        $("#main-race").change(function () {
+            $("#sub-race").show();
+            $("#sub-race").html("<option>Select a sub-race</option>");
+            $.ajax({
+                type: "POST",
+                data: param = $("#main-race").val(),
+                url: "/Home/PopulateSubraces?id=" + param,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    $.each(data, function (index, value) {
+                        $("#sub-race").append($("<option />").val(value.Value).text(value.Text));
+                    });
+                },
+                failure: function () {
+                    alert("failed :(");
+                }
+            })
+        });
+        $("#sub-race").change(function () {
+            $("#main-level").show();
+        });
+        $("#main-level").change(function () {
+            $("#stat-method").show();
+        });
+        $("#stat-method").change(function () {
+            var statmethod = $("#stat-method").val();
+            switch (statmethod) {
+                case 1, "1":
+                    $(".point-buy-label").show();
+
+                    $("#point-total").show();
+
+                    $("#man-input-str").show();
+                    $("#man-input-dex").show();
+                    $("#man-input-con").show();
+                    $("#man-input-int").show();
+                    $("#man-input-wis").show();
+                    $("#man-input-cha").show();
+
+                    $("#man-input-str-btn-up").show();
+                    $("#man-input-dex-btn-up").show();
+                    $("#man-input-con-btn-up").show();
+                    $("#man-input-int-btn-up").show();
+                    $("#man-input-wis-btn-up").show();
+                    $("#man-input-cha-btn-up").show();
+
+                    $("#man-input-str-btn-down").show();
+                    $("#man-input-dex-btn-down").show();
+                    $("#man-input-con-btn-down").show();
+                    $("#man-input-int-btn-down").show();
+                    $("#man-input-wis-btn-down").show();
+                    $("#man-input-cha-btn-down").show();
+
+
+                    $("#man-input-str").val("8");
+                    $("#man-input-dex").val("8");
+                    $("#man-input-con").val("8");
+                    $("#man-input-int").val("8");
+                    $("#man-input-wis").val("8");
+                    $("#man-input-cha").val("8");
+
+                    break;
+                case 2, "2":
+                    //roll for stat ajax call
+                    break;
+                case 3, "3":
+                    //manual input of stats
+
+                    break;
+            }//end statmethod switch
+        });//end stat-method switch statement
+
+
+
+        $("#man-input-str-btn-up").click(function () {
+            var current = parseInt($("#man-input-str").val());
+            var pntcost = checkPointCost(current + 1);
+            var pntsleft = parseInt($("#point-total").val());
+
+            if (pntcost == null || pntsleft < pntcost) {
+                //out of range.
+                $("#errors").val("Max value is 15 with point buy method");
+                $("#errors").show();
+                setTimeout(function () {
+                    $("#errors").hide(5000)
+                });
+            }//end if out of range
+            else {
+                var pntsleft = $("#point-total").val();
+                pntsleft = pntsleft - pntcost;
+                $("#point-total").val(pntsleft);
+                $("#man-input-str").val(current + 1);
+            }
+
+        });
+
+        $("#man-input-dex-btn-up").click(function () {
+            var current = parseInt($("#man-input-dex").val());
+            var pntcost = checkPointCost(current + 1);
+            var pntsleft = parseInt($("#point-total").val());
+
+            if (pntcost == null || pntsleft < pntcost) {
+                //out of range.
+                $("#errors").val("Max value is 15 with point buy method");
+                $("#errors").show();
+                setTimeout(function () {
+                    $("#errors").hide(5000)
+                });
+            }//end if out of range
+            else {
+                var pntsleft = $("#point-total").val();
+                pntsleft = pntsleft - pntcost;
+                $("#point-total").val(pntsleft);
+                $("#man-input-dex").val(current + 1);
+            }
+
+        });
+
+        $("#man-input-con-btn-up").click(function () {
+            var current = parseInt($("#man-input-con").val());
+            var pntcost = checkPointCost(current + 1);
+            var pntsleft = parseInt($("#point-total").val());
+
+            if (pntcost == null || pntsleft < pntcost) {
+                //out of range.
+                $("#errors").val("Max value is 15 with point buy method");
+                $("#errors").show();
+                setTimeout(function () {
+                    $("#errors").hide(5000)
+                });
+            }//end if out of range
+            else {
+                var pntsleft = $("#point-total").val();
+                pntsleft = pntsleft - pntcost;
+                $("#point-total").val(pntsleft);
+                $("#man-input-con").val(current + 1);
+            }
+
+        });
+
+        $("#man-input-int-btn-up").click(function () {
+            var current = parseInt($("#man-input-int").val());
+            var pntcost = checkPointCost(current + 1);
+            var pntsleft = parseInt($("#point-total").val());
+
+            if (pntcost == null || pntsleft < pntcost) {
+                //out of range.
+                $("#errors").val("Max value is 15 with point buy method");
+                $("#errors").show();
+                setTimeout(function () {
+                    $("#errors").hide(5000)
+                });
+            }//end if out of range
+            else {
+                var pntsleft = $("#point-total").val();
+                pntsleft = pntsleft - pntcost;
+                $("#point-total").val(pntsleft);
+                $("#man-input-int").val(current + 1);
+            }
+
+        });
+
+        $("#man-input-wis-btn-up").click(function () {
+            var current = parseInt($("#man-input-wis").val());
+            var pntcost = checkPointCost(current + 1);
+            var pntsleft = parseInt($("#point-total").val());
+
+            if (pntcost == null || pntsleft < pntcost) {
+                //out of range.
+                $("#errors").val("Max value is 15 with point buy method");
+                $("#errors").show();
+                setTimeout(function () {
+                    $("#errors").hide(5000)
+                });
+            }//end if out of range
+            else {
+                var pntsleft = $("#point-total").val();
+                pntsleft = pntsleft - pntcost;
+                $("#point-total").val(pntsleft);
+                $("#man-input-wis").val(current + 1);
+            }
+
+        });
+
+        $("#man-input-cha-btn-up").click(function () {
+            var current = parseInt($("#man-input-cha").val());
+            var pntcost = checkPointCost(current + 1);
+            var pntsleft = parseInt($("#point-total").val());
+
+            if (pntcost == null || pntsleft < pntcost) {
+                //out of range.
+                $("#errors").val("Max value is 15");
+                $("#errors").show();
+                setTimeout(function () {
+                    $("#errors").delay(2000).hide(1000);
+                });
+            }//end if out of range
+            else {
+                var pntsleft = $("#point-total").val();
+                pntsleft = pntsleft - pntcost;
+                $("#point-total").val(pntsleft);
+                $("#man-input-cha").val(current + 1);
+            }
+
+        });
+
+        $("#man-input-str-btn-down").click(function () {
+            var current = parseInt($("#man-input-str").val());
+            var pntcost = checkPointReturn(current - 1);
+            var pntsleft = parseInt($("#point-total").val());
+
+            if (pntcost == null) {
+                //out of range.
+                $("#errors").val("Max value is 15 with point buy method");
+                $("#errors").show();
+                setTimeout(function () {
+                    $("#errors").hide(5000)
+                });
+            }//end if out of range
+            else {
+                var pntsleft = parseInt($("#point-total").val());
+                pntsleft = pntsleft + pntcost;
+                $("#point-total").val(pntsleft);
+                $("#man-input-str").val(current - 1);
+            }
+
+        });
+
+        $("#man-input-dex-btn-down").click(function () {
+            var current = parseInt($("#man-input-dex").val());
+            var pntcost = checkPointReturn(current - 1);
+            var pntsleft = parseInt($("#point-total").val());
+
+            if (pntcost == null) {
+                //out of range.
+                $("#errors").val("Max value is 15 with point buy method");
+                $("#errors").show();
+                setTimeout(function () {
+                    $("#errors").hide(5000)
+                });
+            }//end if out of range
+            else {
+                var pntsleft = parseInt($("#point-total").val());
+                pntsleft = pntsleft + pntcost;
+                $("#point-total").val(pntsleft);
+                $("#man-input-dex").val(current - 1);
+            }
+
+        });
+
+        $("#man-input-con-btn-down").click(function () {
+            var current = parseInt($("#man-input-con").val());
+            var pntcost = checkPointReturn(current - 1);
+            var pntsleft = parseInt($("#point-total").val());
+
+            if (pntcost == null) {
+                //out of range.
+                $("#errors").val("Max value is 15 with point buy method");
+                $("#errors").show();
+                setTimeout(function () {
+                    $("#errors").hide(5000)
+                });
+            }//end if out of range
+            else {
+                var pntsleft = parseInt($("#point-total").val());
+                pntsleft = pntsleft + pntcost;
+                $("#point-total").val(pntsleft);
+                $("#man-input-con").val(current - 1);
+            }
+
+        });
+
+        $("#man-input-int-btn-down").click(function () {
+            var current = parseInt($("#man-input-int").val());
+            var pntcost = checkPointReturn(current - 1);
+            var pntsleft = parseInt($("#point-total").val());
+
+            if (pntcost == null) {
+                //out of range.
+                $("#errors").val("Max value is 15 with point buy method");
+                $("#errors").show();
+                setTimeout(function () {
+                    $("#errors").hide(5000)
+                });
+            }//end if out of range
+            else {
+                var pntsleft = parseInt($("#point-total").val());
+                pntsleft = pntsleft + pntcost;
+                $("#point-total").val(pntsleft);
+                $("#man-input-int").val(current - 1);
+            }
+
+        });
+
+        $("#man-input-wis-btn-up").click(function () {
+            var current = parseInt($("#man-input-wis").val());
+            var pntcost = checkPointReturn(current + 1);
+            var pntsleft = parseInt($("#point-total").val());
+
+            if (pntcost == null) {
+                //out of range.
+                $("#errors").val("Max value is 15 with point buy method");
+                $("#errors").show();
+                setTimeout(function () {
+                    $("#errors").hide(5000)
+                });
+            }//end if out of range
+            else {
+                var pntsleft = parseInt($("#point-total").val());
+                pntsleft = pntsleft - pntcost;
+                $("#point-total").val(pntsleft);
+                $("#man-input-wis").val(current + 1);
+            }
+
+        });
+
+        $("#man-input-cha-btn-down").click(function () {
+            var current = parseInt($("#man-input-cha").val());
+            var pntcost = checkPointReturn(current - 1);
+            var pntsleft = parseInt($("#point-total").val());
+
+            if (pntcost == null) {
+                //out of range.
+                $("#errors").val("Max value is 15");
+                $("#errors").show();
+                setTimeout(function () {
+                    $("#errors").delay(2000).hide(1000);
+                });
+            }//end if out of range
+            else {
+                var pntsleft = parseInt($("#point-total").val());
+                pntsleft = pntsleft + pntcost;
+                $("#point-total").val(pntsleft);
+                $("#man-input-cha").val(current - 1);
+            }
+
+        });
+
+
+
+    });@*this is the end of the document.ready func*@
+
+    function checkPointReturn(pnts) {
+        switch (parseInt(pnts)) {
+            case 8:
+                pnts = 1;
+                break;
+            case 9:
+                pnts = 1;
+                break;
+            case 10:
+                pnts = 1;
+                break;
+            case 11:
+                pnts = 1;
+                break;
+            case 12:
+                pnts = 1;
+                break;
+            case 13:
+                pnts = 2;
+                break;
+            case 14:
+                pnts = 2;
+                break;
+            default:
+                pnts = null;
+                break;
+        }
+        return pnts;
+    }
+
+
+    function checkPointCost(pnts) {
+        switch (parseInt(pnts)) {
+            case 8:
+                pnts = 0;
+
+                break;
+            case 9:
+                pnts = 1;
+
+                break;
+            case 10:
+                pnts = 1;
+
+                break;
+            case 11:
+                pnts = 1;
+
+                break;
+            case 12:
+                pnts = 1;
+
+                break;
+            case 13:
+                pnts = 1;
+
+                break;
+            case 14:
+                pnts = 2;
+
+                break;
+            case 15:
+                pnts = 2;
+
+                break;
+            default:
+                //not a valid point value
+                pnts = null;
+                break;
+        }//end switch
+        return pnts;
+    }//end checkpointscost()
+
+</script>

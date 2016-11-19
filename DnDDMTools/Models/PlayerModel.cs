@@ -8,6 +8,9 @@ namespace DnDDMTools.Models
     public class PlayerModel
     {
         public RaceModel Race { get; set; }
+        public RaceModel SubRace { get; set; }
+        public int Level { get; set; }
+        public ClassModel Class { get; set; }
     }
 
     public class RaceModel
@@ -25,6 +28,7 @@ namespace DnDDMTools.Models
         public int WISMod { get; set; }
         public int CHAMod { get; set; }
 
+        public string Name { get; set; }
         public string[] FemaleNames { get; set; }
         public string[] MaleNames { get; set; }
         public int Age { get; set; }
@@ -40,9 +44,10 @@ namespace DnDDMTools.Models
 
 
 
-        public RaceModel(int strmod, int dexmod, int conmod, int intmod, int wismod, int chamod, string[] femnames,string[]malenames,
+        public RaceModel(string name, int strmod, int dexmod, int conmod, int intmod, int wismod, int chamod, string[] femnames, string[] malenames,
                         int age, string alignment, string size, int maxfoot, int minfoot, int weight, string speed, int mininch, int maxinch)
         {
+            Name = name;
             STRMod = strmod;
             DEXMod = dexmod;
             CONMod = conmod;
@@ -75,9 +80,10 @@ namespace DnDDMTools.Models
         /// <param name="speed"></param>
         /// <param name="mininch"></param>
         /// <param name="maxinch"></param>
-        public RaceModel(int strmod, int dexmod, int conmod, int intmod, int wismod, int chamod,
+        public RaceModel(string name, int strmod, int dexmod, int conmod, int intmod, int wismod, int chamod,
                        int maxfoot, int minfoot, string speed, int mininch, int maxinch)
         {
+            Name = name;
             STRMod = strmod;
             DEXMod = dexmod;
             CONMod = conmod;
@@ -90,5 +96,56 @@ namespace DnDDMTools.Models
             MaxInch = maxinch;
             MinInch = mininch;
         }
+    }//end class
+
+    public class ClassModel
+    {
+        public int HitDie { get; set; }
+        public AbilityModel Primary { get; set; }
+        public AbilityModel Secondary { get; set; }
+        public AbilityModel Tertiary { get; set; }
+        public int ProficiencyBonus { get; set; }
     }
-}
+
+    public class AbilityModel
+    {
+        private int _abilityScoreMax { get; set; }
+        private int _abilityScore { get; set; }
+        private int _abilityScoreMin { get; set; }
+
+        public int AbilityScore
+        {
+            get { return _abilityScore; }
+            set
+            {
+                if (value > _abilityScoreMax)
+                {
+                    _abilityScore = _abilityScoreMax;
+                }
+                else if (value < _abilityScoreMin)
+                {
+                    _abilityScore = _abilityScoreMin;
+                }
+                else
+                {
+                    _abilityScore = value;
+                }
+            }
+        }//end logic for abilityscore
+
+        public int AbilityModifier { get; set; }
+
+        public AbilityModel(int abilityScoreMax, int abilityScore, int abilityScoreMin)
+        {
+            _abilityScoreMax = abilityScoreMax;
+            _abilityScoreMin = abilityScoreMin;
+            _abilityScore = abilityScore;
+        }
+
+
+    }
+
+
+
+
+}//end namespace
