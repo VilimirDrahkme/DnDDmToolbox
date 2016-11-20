@@ -20,6 +20,7 @@ namespace DnDDMTools.Models
         private int _maxFoot;
         private int _maxInch;
 
+        public int Id { get; set; }
 
         public int STRMod { get; set; }
         public int DEXMod { get; set; }
@@ -41,7 +42,7 @@ namespace DnDDMTools.Models
         public int Weight { get; set; }
         public string Speed { get; set; }
 
-
+        
 
 
         public RaceModel(string name, int strmod, int dexmod, int conmod, int intmod, int wismod, int chamod, string[] femnames, string[] malenames,
@@ -80,9 +81,10 @@ namespace DnDDMTools.Models
         /// <param name="speed"></param>
         /// <param name="mininch"></param>
         /// <param name="maxinch"></param>
-        public RaceModel(string name, int strmod, int dexmod, int conmod, int intmod, int wismod, int chamod,
+        public RaceModel(int id, string name, int strmod, int dexmod, int conmod, int intmod, int wismod, int chamod,
                        int maxfoot, int minfoot, string speed, int mininch, int maxinch)
         {
+            Id = id;
             Name = name;
             STRMod = strmod;
             DEXMod = dexmod;

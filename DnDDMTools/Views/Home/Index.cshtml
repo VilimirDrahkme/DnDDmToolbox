@@ -5,8 +5,11 @@
 <div class="col-md-12">
     <div class="col-md-6">
         <input typeof="text" id="errors" style="display:none;" readonly />
-        @Html.DropDownListFor(p => p.Race, new SelectList(ViewBag.Race, "Value", "Text"), "Select a Race", new { @id = "main-race" })
-        @Html.DropDownListFor(p => p.SubRace, Enumerable.Empty<SelectListItem>(), "Select a Subrace", new { @id = "sub-race", @style = "display:none;" })
+        <div class="col-md-12">
+            @Html.DropDownListFor(p => p.Race, new SelectList(ViewBag.Race, "Value", "Text"), "Select a Race", new { @id = "main-race" })
+            @Html.DropDownListFor(p => p.SubRace, Enumerable.Empty<SelectListItem>(), "Select a Subrace", new { @id = "sub-race", @style = "display:none;" })
+            <p id="racial-details" class="col-md-12" style="display:none;"></p>
+        </div>
         @Html.DropDownListFor(p => p.Level, new SelectList(ViewBag.Levels, "Value", "Text"), "Select Level", new { @id = "main-level", @style = "display:none;" })
         @Html.DropDownList("StatMethod", new SelectList(ViewBag.StatMethod, "Value", "Text"), "Stat allocation method", new { @id = "stat-method", @style = "display:none;" })
     </div>
@@ -69,27 +72,83 @@
 <script>
     $(document).ready(function () {
         $("#main-race").change(function () {
-            $("#sub-race").show();
-            $("#sub-race").html("<option>Select a sub-race</option>");
-            $.ajax({
-                type: "POST",
-                data: param = $("#main-race").val(),
-                url: "/Home/PopulateSubraces?id=" + param,
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) {
-                    $.each(data, function (index, value) {
-                        $("#sub-race").append($("<option />").val(value.Value).text(value.Text));
-                    });
-                },
-                failure: function () {
-                    alert("failed :(");
-                }
-            })
+            if ($("#main-race").val() != null) {
+
+
+                $("#sub-race").show();
+                $("#sub-race").html("<option>Select a sub-race</option>");
+
+                $.ajax({
+                    type: "POST",
+                    data: id = $("#main-race").val(),
+                    url: '/Home/PopulateSubraces?id=' + id,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        $.each(data, function (index, value) {
+
+                            if (value.Value != null) {
+                                $("#sub-race").append($("<option />").val(value.Value).text(value.Text));
+
+                            }
+
+                        });
+                    },
+                    failure: function () {
+                        alert("failed :(");
+                    }
+                })
+            }//end if
         });
         $("#sub-race").change(function () {
             $("#main-level").show();
+
+            var mainId = $("#main-race").val();
+            var srId = $("#sub-race").val();
+
+            $.ajax({
+                type: "POST",
+                data: JSON.stringify({
+                    'mainId': mainId,
+                    'srId': srId
+                }),
+                url: "/Home/SelectedSubrace?mainId=" + mainId + "&srId=" + srId,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    if (data.MaxInch == 12) {
+                        var maxHeight = (parseInt(data.MaxFoot) + 1).toString() + "feet";
+                    }
+                    else {
+                        var maxHeight = data.MaxFoot.toString() + "feet" + data.MaxInch + "inches";
+                    }
+                    if (data.MinInch == 12) {
+                        var minHeight = (parseInt(data.MinFoot) + 1).toString() + "feet";
+                    }
+                    else {
+                        var minHeight = data.MinFoot.toString() + "feet" + data.MinInch + "inches";
+                    }
+
+                    $("#racial-details").show();
+                    $("#racial-details").html("Race: " + data.Name +
+                        "<br /> Strength Ability: " + data.STRMod +
+                        "<br /> Dexterity Ability: " + data.DEXMod +
+                        "<br /> Constitution Ability: " + data.CONMod +
+                        "<br /> Intelligence Ability: " + data.INTMod +
+                        "<br /> Wisdom Ability: " + data.WISMod +
+                        "<br /> Charisma Ability: " + data.CHAMod + 
+                        "<br /> Speed: " + data.Speed + 
+                        "<br /> Maximum Height: " + maxHeight + 
+                        "<br /> Minimum Height: " + minHeight);
+                },
+                failure: function () {
+                    alert("failed to retrieve individual subrace");
+                }
+            });
         });
+
+
+
         $("#main-level").change(function () {
             $("#stat-method").show();
         });

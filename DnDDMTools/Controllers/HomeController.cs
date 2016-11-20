@@ -43,63 +43,17 @@ namespace DnDDMTools.Controllers
         [HttpPost]
         public JsonResult PopulateSubraces(int id)
         {
-            RaceModel[] subraces = null;
-            switch (id)
-            {
-                case 1:
-                    //user picked Dwarf
-                    RaceModel HillDwarf = new RaceModel("Hill Dwarf", 0, 0, 2, 0, 1, 0, 4, 3, "25 feet or 5 5x5 squares", 12, 12);
-                    RaceModel MountainDwarf = new RaceModel("Mountain Dwarf", 2, 0, 2, 0, 0, 0, 4, 2, "25 feet or 5 5x5 squares", 12, 12);
-                    subraces = new RaceModel[2] { HillDwarf, MountainDwarf };
-                    break;
-                case 2:
-                    //user picked elf
-                    RaceModel HighElf = new RaceModel("High Elf", 0, 2, 0, 1, 0, 0, 6, 3, "30 feet or 6 5x5 squares", 12, 12);
-                    RaceModel WoodElf = new RaceModel("Wood Elf", 0, 2, 0, 0, 1, 0, 6, 3, "35 feet or 7 5x5 squares", 12, 12);
-                    RaceModel Drow = new RaceModel("Drow", 0, 2, 0, 0, 0, 1, 6, 3, "30 feet or 6 5x5 squares", 12, 12);
-                    subraces = new RaceModel[3] { HighElf, WoodElf, Drow };
-                    break;
-                case 3:
-                    //user picked halfling
-                    RaceModel Lightfoot = new RaceModel("LightFoot", 0, 2, 0, 0, 0, 1, 3, 1, "25 feet or 5 5x5 squares", 6, 6);
-                    RaceModel Stout = new RaceModel("Stout", 0, 2, 1, 0, 0, 0, 1, 3, "25 feet or 5 5x5 squares", 6, 6);
-                    subraces = new RaceModel[2] { Lightfoot, Stout };
-                    break;
-                case 4:
-                    //Human :P boring right?
-                    RaceModel Human = new RaceModel("Human", 1, 1, 1, 1, 1, 1, 6, 4, "30 feet or 6 5x5 squares", 6, 6);
-                    RaceModel HumanVARIANT = new RaceModel("HumanVARIANT", 0, 0, 0, 0, 0, 0, 6, 4, "30 feet or 6 5x5 squares", 6, 6);
-                    //come back for the variant for noting that >user< picks his stat allocations as well as one feat and one skill
-                    subraces = new RaceModel[2] { Human, HumanVARIANT };
-                    break;
-                case 5:
-                    //Dragonborn - fucking a dude. yes.
-                    //unfortunately, no alts here :(
-                    break;
-
-
-                default:
-                    break;
-            }
-
+            RaceModel[] subraces = GetSubRaces(id);
             SelectListItem[] returnToView = null;
 
             if (subraces != null)
             {
                 returnToView = new SelectListItem[subraces.Count()];
-
                 for (int i = 0; i < subraces.Count(); i++)
                 {
                     returnToView[i] = new SelectListItem() { Text = subraces[i].Name, Value = (i).ToString() };
                 }
-
-
             }
-
-
-
-
-
             if (returnToView != null)
             {
                 return Json(returnToView, JsonRequestBehavior.AllowGet);
@@ -108,6 +62,60 @@ namespace DnDDMTools.Controllers
             {
                 return Json("sorry....no available subraces at this time");
             }
+        }
+
+        [HttpPost]
+        public JsonResult SelectedSubrace(int mainId, int srId)
+        {
+            RaceModel selectedSubrace = GetSelectedSubRace(mainId, srId);
+            return Json(selectedSubrace, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public RaceModel[] GetSubRaces(int id)
+        {
+            RaceModel[] subraces = null;
+            switch (id)
+            {
+                case 1:
+                    //user picked Dwarf
+                    RaceModel HillDwarf = new RaceModel(1,"Hill Dwarf", 0, 0, 2, 0, 1, 0, 4, 2, "25 feet or 5 5x5 squares", 12, 12);
+                    RaceModel MountainDwarf = new RaceModel(2,"Mountain Dwarf", 2, 0, 2, 0, 0, 0, 4, 2, "25 feet or 5 5x5 squares", 12, 12);
+                    subraces = new RaceModel[2] { HillDwarf, MountainDwarf };
+                    break;
+                case 2:
+                    //user picked elf
+                    RaceModel HighElf = new RaceModel(1,"High Elf", 0, 2, 0, 1, 0, 0, 6, 3, "30 feet or 6 5x5 squares", 12, 12);
+                    RaceModel WoodElf = new RaceModel(2,"Wood Elf", 0, 2, 0, 0, 1, 0, 6, 3, "35 feet or 7 5x5 squares", 12, 12);
+                    RaceModel Drow = new RaceModel(3,"Drow", 0, 2, 0, 0, 0, 1, 6, 3, "30 feet or 6 5x5 squares", 12, 12);
+                    subraces = new RaceModel[3] { HighElf, WoodElf, Drow };
+                    break;
+                case 3:
+                    //user picked halfling
+                    RaceModel Lightfoot = new RaceModel(1,"LightFoot", 0, 2, 0, 0, 0, 1, 3, 1, "25 feet or 5 5x5 squares", 6, 6);
+                    RaceModel Stout = new RaceModel(2,"Stout", 0, 2, 1, 0, 0, 0, 3,1, "25 feet or 5 5x5 squares", 6, 6);
+                    subraces = new RaceModel[2] { Lightfoot, Stout };
+                    break;
+                case 4:
+                    //Human :P boring right?
+                    RaceModel Human = new RaceModel(1,"Human", 1, 1, 1, 1, 1, 1, 6, 4, "30 feet or 6 5x5 squares", 6, 6);
+                    RaceModel HumanVARIANT = new RaceModel(2,"HumanVARIANT", 0, 0, 0, 0, 0, 0, 6, 4, "30 feet or 6 5x5 squares", 6, 6);
+                    //come back for the variant for noting that >user< picks his stat allocations as well as one feat and one skill
+                    subraces = new RaceModel[2] { Human, HumanVARIANT };
+                    break;
+                case 5:
+                    //Dragonborn 
+                    RaceModel DragonBornBasic = new RaceModel(1,"Dragonborn -no alts", 2, 0, 0, 0, 0, 1, 6, 3, "30 feet or 6 5x5 squares", 6, 12);
+                    subraces = new RaceModel[1] { DragonBornBasic };
+                    break;
+            }//end switch
+            return subraces;
+        }//end GetSubRace
+
+        public RaceModel GetSelectedSubRace(int mainId, int srId)
+        {
+            RaceModel[] list = GetSubRaces(mainId);
+            return list[srId];
         }
     }
 }
