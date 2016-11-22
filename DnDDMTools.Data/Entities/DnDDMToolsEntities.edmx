@@ -1,0 +1,1798 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DndDMToolsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Alignment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AlignmentName" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Background">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BackgroundName" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bond">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClassName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HitDie" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="StartingEquipment" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ClassFeatureId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClassFeature">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClassId" Type="int" Nullable="false" />
+          <Property Name="FeatureName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DonDoff">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="DonTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DoffTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cost" Type="nvarchar" MaxLength="100" />
+          <Property Name="AC" Type="int" />
+          <Property Name="ACDesc" Type="nvarchar" MaxLength="50" />
+          <Property Name="StrReq" Type="int" />
+          <Property Name="StealthDisadvantage" Type="bit" />
+          <Property Name="Weight" Type="nvarchar" MaxLength="50" />
+          <Property Name="DonDoffId" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FirstName">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RaceId" Type="int" Nullable="false" />
+          <Property Name="GenderId" Type="int" />
+        </EntityType>
+        <EntityType Name="Flaw">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenderName" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Height">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaxFoot" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="MaxInch" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="MinFoot" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="MinInch" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="RaceId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ideal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LastName">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RaceId" Type="int" Nullable="false" />
+          <Property Name="GenderId" Type="int" />
+        </EntityType>
+        <EntityType Name="PersonalityTrait">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonalityTraitName" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubRaceId" Type="int" Nullable="false" />
+          <Property Name="MainClassId" Type="int" Nullable="false" />
+          <Property Name="MainClassLevel" Type="int" Nullable="false" />
+          <Property Name="SubClassId" Type="int" />
+          <Property Name="SubClassLevel" Type="int" />
+          <Property Name="TertiaryClassId" Type="int" />
+          <Property Name="TertiaryClassLevel" Type="int" />
+          <Property Name="WholeNameId" Type="int" Nullable="false" />
+          <Property Name="GenderId" Type="int" Nullable="false" />
+          <Property Name="AlignmentId" Type="int" Nullable="false" />
+          <Property Name="StrAbility" Type="int" Nullable="false" />
+          <Property Name="DexAbility" Type="int" Nullable="false" />
+          <Property Name="ConAbility" Type="int" Nullable="false" />
+          <Property Name="IntAbility" Type="int" Nullable="false" />
+          <Property Name="WisAbility" Type="int" Nullable="false" />
+          <Property Name="ChaAbility" Type="int" Nullable="false" />
+          <Property Name="PersonalityTraitId" Type="int" />
+          <Property Name="IdealId" Type="int" />
+          <Property Name="BondId" Type="int" />
+          <Property Name="FlawId" Type="int" />
+          <Property Name="BackgroundId" Type="int" />
+        </EntityType>
+        <EntityType Name="Proficiency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClassId" Type="int" />
+          <Property Name="SubraceId" Type="int" />
+          <Property Name="ProficiencyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProficiencyDescription" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PropertyDescription" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Race">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Size" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Speed">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Speed" Type="nvarchar" MaxLength="75" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubRace">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STRMod" Type="int" Nullable="false" />
+          <Property Name="DEXMod" Type="int" Nullable="false" />
+          <Property Name="CONMod" Type="int" Nullable="false" />
+          <Property Name="INTMod" Type="int" Nullable="false" />
+          <Property Name="WISMod" Type="int" Nullable="false" />
+          <Property Name="CHAMod" Type="int" Nullable="false" />
+          <Property Name="HeightId" Type="int" Nullable="false" />
+          <Property Name="SizeId" Type="int" Nullable="false" />
+          <Property Name="WeightId" Type="int" Nullable="false" />
+          <Property Name="SpeedId" Type="int" Nullable="false" />
+          <Property Name="RaceId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Weapon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Weapon" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cost" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Damage" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Weight" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="PropertyId" Type="int" />
+        </EntityType>
+        <EntityType Name="Weight">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RaceId" Type="int" Nullable="false" />
+          <Property Name="MinWeight" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaxWeight" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WholeName">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="FirstNameId" Type="int" Nullable="false" />
+          <Property Name="LastNameId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Class_ClassFeature">
+          <End Role="ClassFeature" Type="Self.ClassFeature" Multiplicity="1" />
+          <End Role="Class" Type="Self.Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClassFeature">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="ClassFeatureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClassFeature_Class">
+          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="ClassFeature" Type="Self.ClassFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClassFeature">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DonDoff_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="DonDoff" Type="Self.DonDoff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DonDoff">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipment_DonDoff">
+          <End Role="DonDoff" Type="Self.DonDoff" Multiplicity="0..1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonDoff">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="DonDoffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FirstName_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="FirstName" Type="Self.FirstName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirstName">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FirstName_Race">
+          <End Role="Race" Type="Self.Race" Multiplicity="1" />
+          <End Role="FirstName" Type="Self.FirstName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Race">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirstName">
+              <PropertyRef Name="RaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Height_Race">
+          <End Role="Race" Type="Self.Race" Multiplicity="1" />
+          <End Role="Height" Type="Self.Height" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Race">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Height">
+              <PropertyRef Name="RaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LastName_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="LastName" Type="Self.LastName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LastName">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LastName_Race">
+          <End Role="Race" Type="Self.Race" Multiplicity="1" />
+          <End Role="LastName" Type="Self.LastName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Race">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LastName">
+              <PropertyRef Name="RaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Alignment">
+          <End Role="Alignment" Type="Self.Alignment" Multiplicity="1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alignment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="AlignmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Background">
+          <End Role="Background" Type="Self.Background" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Background">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="BackgroundId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Bond">
+          <End Role="Bond" Type="Self.Bond" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bond">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="BondId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Class">
+          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="MainClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Class1">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="SubClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Class2">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="TertiaryClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Flaw">
+          <End Role="Flaw" Type="Self.Flaw" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flaw">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="FlawId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Ideal">
+          <End Role="Ideal" Type="Self.Ideal" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ideal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="IdealId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_PersonalityTrait">
+          <End Role="PersonalityTrait" Type="Self.PersonalityTrait" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonalityTrait">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="PersonalityTraitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_WholeName">
+          <End Role="WholeName" Type="Self.WholeName" Multiplicity="1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WholeName">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="WholeNameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubRace_Height">
+          <End Role="Height" Type="Self.Height" Multiplicity="1" />
+          <End Role="SubRace" Type="Self.SubRace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Height">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubRace">
+              <PropertyRef Name="HeightId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubRace_Race">
+          <End Role="Race" Type="Self.Race" Multiplicity="1" />
+          <End Role="SubRace" Type="Self.SubRace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Race">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubRace">
+              <PropertyRef Name="RaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubRace_Size">
+          <End Role="Size" Type="Self.Size" Multiplicity="1" />
+          <End Role="SubRace" Type="Self.SubRace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Size">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubRace">
+              <PropertyRef Name="SizeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubRace_Speed">
+          <End Role="Speed" Type="Self.Speed" Multiplicity="1" />
+          <End Role="SubRace" Type="Self.SubRace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speed">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubRace">
+              <PropertyRef Name="SpeedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubRace_Weight">
+          <End Role="Weight" Type="Self.Weight" Multiplicity="1" />
+          <End Role="SubRace" Type="Self.SubRace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Weight">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubRace">
+              <PropertyRef Name="WeightId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Weight_Race">
+          <End Role="Race" Type="Self.Race" Multiplicity="1" />
+          <End Role="Weight" Type="Self.Weight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Race">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Weight">
+              <PropertyRef Name="RaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WholeName_FirstName">
+          <End Role="FirstName" Type="Self.FirstName" Multiplicity="1" />
+          <End Role="WholeName" Type="Self.WholeName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirstName">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WholeName">
+              <PropertyRef Name="FirstNameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WholeName_LastName">
+          <End Role="LastName" Type="Self.LastName" Multiplicity="1" />
+          <End Role="WholeName" Type="Self.WholeName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LastName">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WholeName">
+              <PropertyRef Name="LastNameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DndDMToolsModelStoreContainer">
+          <EntitySet Name="Alignment" EntityType="Self.Alignment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Background" EntityType="Self.Background" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bond" EntityType="Self.Bond" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClassFeature" EntityType="Self.ClassFeature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DonDoff" EntityType="Self.DonDoff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FirstName" EntityType="Self.FirstName" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Flaw" EntityType="Self.Flaw" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Height" EntityType="Self.Height" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ideal" EntityType="Self.Ideal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LastName" EntityType="Self.LastName" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonalityTrait" EntityType="Self.PersonalityTrait" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proficiency" EntityType="Self.Proficiency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Race" EntityType="Self.Race" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Speed" EntityType="Self.Speed" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubRace" EntityType="Self.SubRace" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Weapon" EntityType="Self.Weapon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Weight" EntityType="Self.Weight" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WholeName" EntityType="Self.WholeName" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Class_ClassFeature" Association="Self.FK_Class_ClassFeature">
+            <End Role="ClassFeature" EntitySet="ClassFeature" />
+            <End Role="Class" EntitySet="Class" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClassFeature_Class" Association="Self.FK_ClassFeature_Class">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="ClassFeature" EntitySet="ClassFeature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DonDoff_Category" Association="Self.FK_DonDoff_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="DonDoff" EntitySet="DonDoff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipment_DonDoff" Association="Self.FK_Equipment_DonDoff">
+            <End Role="DonDoff" EntitySet="DonDoff" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FirstName_Gender" Association="Self.FK_FirstName_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="FirstName" EntitySet="FirstName" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FirstName_Race" Association="Self.FK_FirstName_Race">
+            <End Role="Race" EntitySet="Race" />
+            <End Role="FirstName" EntitySet="FirstName" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Height_Race" Association="Self.FK_Height_Race">
+            <End Role="Race" EntitySet="Race" />
+            <End Role="Height" EntitySet="Height" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LastName_Gender" Association="Self.FK_LastName_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="LastName" EntitySet="LastName" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LastName_Race" Association="Self.FK_LastName_Race">
+            <End Role="Race" EntitySet="Race" />
+            <End Role="LastName" EntitySet="LastName" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Alignment" Association="Self.FK_Player_Alignment">
+            <End Role="Alignment" EntitySet="Alignment" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Background" Association="Self.FK_Player_Background">
+            <End Role="Background" EntitySet="Background" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Bond" Association="Self.FK_Player_Bond">
+            <End Role="Bond" EntitySet="Bond" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Class" Association="Self.FK_Player_Class">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Class1" Association="Self.FK_Player_Class1">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Class2" Association="Self.FK_Player_Class2">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Flaw" Association="Self.FK_Player_Flaw">
+            <End Role="Flaw" EntitySet="Flaw" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Gender" Association="Self.FK_Player_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Ideal" Association="Self.FK_Player_Ideal">
+            <End Role="Ideal" EntitySet="Ideal" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_PersonalityTrait" Association="Self.FK_Player_PersonalityTrait">
+            <End Role="PersonalityTrait" EntitySet="PersonalityTrait" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_WholeName" Association="Self.FK_Player_WholeName">
+            <End Role="WholeName" EntitySet="WholeName" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubRace_Height" Association="Self.FK_SubRace_Height">
+            <End Role="Height" EntitySet="Height" />
+            <End Role="SubRace" EntitySet="SubRace" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubRace_Race" Association="Self.FK_SubRace_Race">
+            <End Role="Race" EntitySet="Race" />
+            <End Role="SubRace" EntitySet="SubRace" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubRace_Size" Association="Self.FK_SubRace_Size">
+            <End Role="Size" EntitySet="Size" />
+            <End Role="SubRace" EntitySet="SubRace" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubRace_Speed" Association="Self.FK_SubRace_Speed">
+            <End Role="Speed" EntitySet="Speed" />
+            <End Role="SubRace" EntitySet="SubRace" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubRace_Weight" Association="Self.FK_SubRace_Weight">
+            <End Role="Weight" EntitySet="Weight" />
+            <End Role="SubRace" EntitySet="SubRace" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Weight_Race" Association="Self.FK_Weight_Race">
+            <End Role="Race" EntitySet="Race" />
+            <End Role="Weight" EntitySet="Weight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WholeName_FirstName" Association="Self.FK_WholeName_FirstName">
+            <End Role="FirstName" EntitySet="FirstName" />
+            <End Role="WholeName" EntitySet="WholeName" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WholeName_LastName" Association="Self.FK_WholeName_LastName">
+            <End Role="LastName" EntitySet="LastName" />
+            <End Role="WholeName" EntitySet="WholeName" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DndDMToolsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Alignment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AlignmentName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Players" Relationship="Self.FK_Player_Alignment" FromRole="Alignment" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="Background">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BackgroundName" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Players" Relationship="Self.FK_Player_Background" FromRole="Background" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="Bond">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Players" Relationship="Self.FK_Player_Bond" FromRole="Bond" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DonDoffs" Relationship="Self.FK_DonDoff_Category" FromRole="Category" ToRole="DonDoff" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HitDie" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartingEquipment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClassFeatureId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ClassFeature" Relationship="Self.FK_Class_ClassFeature" FromRole="Class" ToRole="ClassFeature" />
+          <NavigationProperty Name="ClassFeatures" Relationship="Self.FK_ClassFeature_Class" FromRole="Class" ToRole="ClassFeature" />
+          <NavigationProperty Name="Players" Relationship="Self.FK_Player_Class" FromRole="Class" ToRole="Player" />
+          <NavigationProperty Name="Players1" Relationship="Self.FK_Player_Class1" FromRole="Class" ToRole="Player" />
+          <NavigationProperty Name="Players2" Relationship="Self.FK_Player_Class2" FromRole="Class" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="ClassFeature">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClassId" Type="Int32" Nullable="false" />
+          <Property Name="FeatureName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Classes" Relationship="Self.FK_Class_ClassFeature" FromRole="ClassFeature" ToRole="Class" />
+          <NavigationProperty Name="Class" Relationship="Self.FK_ClassFeature_Class" FromRole="ClassFeature" ToRole="Class" />
+        </EntityType>
+        <EntityType Name="DonDoff">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="DonTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DoffTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_DonDoff_Category" FromRole="DonDoff" ToRole="Category" />
+          <NavigationProperty Name="Equipments" Relationship="Self.FK_Equipment_DonDoff" FromRole="DonDoff" ToRole="Equipment" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AC" Type="Int32" />
+          <Property Name="ACDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StrReq" Type="Int32" />
+          <Property Name="StealthDisadvantage" Type="Boolean" />
+          <Property Name="Weight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DonDoffId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DonDoff" Relationship="Self.FK_Equipment_DonDoff" FromRole="Equipment" ToRole="DonDoff" />
+        </EntityType>
+        <EntityType Name="FirstName">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RaceId" Type="Int32" Nullable="false" />
+          <Property Name="GenderId" Type="Int32" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_FirstName_Gender" FromRole="FirstName" ToRole="Gender" />
+          <NavigationProperty Name="Race" Relationship="Self.FK_FirstName_Race" FromRole="FirstName" ToRole="Race" />
+          <NavigationProperty Name="WholeNames" Relationship="Self.FK_WholeName_FirstName" FromRole="FirstName" ToRole="WholeName" />
+        </EntityType>
+        <EntityType Name="Flaw">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Players" Relationship="Self.FK_Player_Flaw" FromRole="Flaw" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenderName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FirstNames" Relationship="Self.FK_FirstName_Gender" FromRole="Gender" ToRole="FirstName" />
+          <NavigationProperty Name="LastNames" Relationship="Self.FK_LastName_Gender" FromRole="Gender" ToRole="LastName" />
+          <NavigationProperty Name="Players" Relationship="Self.FK_Player_Gender" FromRole="Gender" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="Height">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaxFoot" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaxInch" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MinFoot" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MinInch" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RaceId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Race" Relationship="Self.FK_Height_Race" FromRole="Height" ToRole="Race" />
+          <NavigationProperty Name="SubRaces" Relationship="Self.FK_SubRace_Height" FromRole="Height" ToRole="SubRace" />
+        </EntityType>
+        <EntityType Name="Ideal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Players" Relationship="Self.FK_Player_Ideal" FromRole="Ideal" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="LastName">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RaceId" Type="Int32" Nullable="false" />
+          <Property Name="GenderId" Type="Int32" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_LastName_Gender" FromRole="LastName" ToRole="Gender" />
+          <NavigationProperty Name="Race" Relationship="Self.FK_LastName_Race" FromRole="LastName" ToRole="Race" />
+          <NavigationProperty Name="WholeNames" Relationship="Self.FK_WholeName_LastName" FromRole="LastName" ToRole="WholeName" />
+        </EntityType>
+        <EntityType Name="PersonalityTrait">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonalityTraitName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Players" Relationship="Self.FK_Player_PersonalityTrait" FromRole="PersonalityTrait" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubRaceId" Type="Int32" Nullable="false" />
+          <Property Name="MainClassId" Type="Int32" Nullable="false" />
+          <Property Name="MainClassLevel" Type="Int32" Nullable="false" />
+          <Property Name="SubClassId" Type="Int32" />
+          <Property Name="SubClassLevel" Type="Int32" />
+          <Property Name="TertiaryClassId" Type="Int32" />
+          <Property Name="TertiaryClassLevel" Type="Int32" />
+          <Property Name="WholeNameId" Type="Int32" Nullable="false" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <Property Name="AlignmentId" Type="Int32" Nullable="false" />
+          <Property Name="StrAbility" Type="Int32" Nullable="false" />
+          <Property Name="DexAbility" Type="Int32" Nullable="false" />
+          <Property Name="ConAbility" Type="Int32" Nullable="false" />
+          <Property Name="IntAbility" Type="Int32" Nullable="false" />
+          <Property Name="WisAbility" Type="Int32" Nullable="false" />
+          <Property Name="ChaAbility" Type="Int32" Nullable="false" />
+          <Property Name="PersonalityTraitId" Type="Int32" />
+          <Property Name="IdealId" Type="Int32" />
+          <Property Name="BondId" Type="Int32" />
+          <Property Name="FlawId" Type="Int32" />
+          <Property Name="BackgroundId" Type="Int32" />
+          <NavigationProperty Name="Alignment" Relationship="Self.FK_Player_Alignment" FromRole="Player" ToRole="Alignment" />
+          <NavigationProperty Name="Background" Relationship="Self.FK_Player_Background" FromRole="Player" ToRole="Background" />
+          <NavigationProperty Name="Bond" Relationship="Self.FK_Player_Bond" FromRole="Player" ToRole="Bond" />
+          <NavigationProperty Name="Class" Relationship="Self.FK_Player_Class" FromRole="Player" ToRole="Class" />
+          <NavigationProperty Name="Class1" Relationship="Self.FK_Player_Class1" FromRole="Player" ToRole="Class" />
+          <NavigationProperty Name="Class2" Relationship="Self.FK_Player_Class2" FromRole="Player" ToRole="Class" />
+          <NavigationProperty Name="Flaw" Relationship="Self.FK_Player_Flaw" FromRole="Player" ToRole="Flaw" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Player_Gender" FromRole="Player" ToRole="Gender" />
+          <NavigationProperty Name="Ideal" Relationship="Self.FK_Player_Ideal" FromRole="Player" ToRole="Ideal" />
+          <NavigationProperty Name="PersonalityTrait" Relationship="Self.FK_Player_PersonalityTrait" FromRole="Player" ToRole="PersonalityTrait" />
+          <NavigationProperty Name="WholeName" Relationship="Self.FK_Player_WholeName" FromRole="Player" ToRole="WholeName" />
+        </EntityType>
+        <EntityType Name="Proficiency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClassId" Type="Int32" />
+          <Property Name="SubraceId" Type="Int32" />
+          <Property Name="ProficiencyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProficiencyDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PropertyDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Race">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FirstNames" Relationship="Self.FK_FirstName_Race" FromRole="Race" ToRole="FirstName" />
+          <NavigationProperty Name="Heights" Relationship="Self.FK_Height_Race" FromRole="Race" ToRole="Height" />
+          <NavigationProperty Name="LastNames" Relationship="Self.FK_LastName_Race" FromRole="Race" ToRole="LastName" />
+          <NavigationProperty Name="SubRaces" Relationship="Self.FK_SubRace_Race" FromRole="Race" ToRole="SubRace" />
+          <NavigationProperty Name="Weights" Relationship="Self.FK_Weight_Race" FromRole="Race" ToRole="Weight" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Size1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SubRaces" Relationship="Self.FK_SubRace_Size" FromRole="Size" ToRole="SubRace" />
+        </EntityType>
+        <EntityType Name="Speed">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Speed1" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SubRaces" Relationship="Self.FK_SubRace_Speed" FromRole="Speed" ToRole="SubRace" />
+        </EntityType>
+        <EntityType Name="SubRace">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STRMod" Type="Int32" Nullable="false" />
+          <Property Name="DEXMod" Type="Int32" Nullable="false" />
+          <Property Name="CONMod" Type="Int32" Nullable="false" />
+          <Property Name="INTMod" Type="Int32" Nullable="false" />
+          <Property Name="WISMod" Type="Int32" Nullable="false" />
+          <Property Name="CHAMod" Type="Int32" Nullable="false" />
+          <Property Name="HeightId" Type="Int32" Nullable="false" />
+          <Property Name="SizeId" Type="Int32" Nullable="false" />
+          <Property Name="WeightId" Type="Int32" Nullable="false" />
+          <Property Name="SpeedId" Type="Int32" Nullable="false" />
+          <Property Name="RaceId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Height" Relationship="Self.FK_SubRace_Height" FromRole="SubRace" ToRole="Height" />
+          <NavigationProperty Name="Race" Relationship="Self.FK_SubRace_Race" FromRole="SubRace" ToRole="Race" />
+          <NavigationProperty Name="Size" Relationship="Self.FK_SubRace_Size" FromRole="SubRace" ToRole="Size" />
+          <NavigationProperty Name="Speed" Relationship="Self.FK_SubRace_Speed" FromRole="SubRace" ToRole="Speed" />
+          <NavigationProperty Name="Weight" Relationship="Self.FK_SubRace_Weight" FromRole="SubRace" ToRole="Weight" />
+        </EntityType>
+        <EntityType Name="Weapon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Weapon1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Damage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Weight" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PropertyId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Weight">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RaceId" Type="Int32" Nullable="false" />
+          <Property Name="MinWeight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaxWeight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Race" Relationship="Self.FK_Weight_Race" FromRole="Weight" ToRole="Race" />
+          <NavigationProperty Name="SubRaces" Relationship="Self.FK_SubRace_Weight" FromRole="Weight" ToRole="SubRace" />
+        </EntityType>
+        <EntityType Name="WholeName">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FirstNameId" Type="Int32" Nullable="false" />
+          <Property Name="LastNameId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FirstName" Relationship="Self.FK_WholeName_FirstName" FromRole="WholeName" ToRole="FirstName" />
+          <NavigationProperty Name="LastName" Relationship="Self.FK_WholeName_LastName" FromRole="WholeName" ToRole="LastName" />
+          <NavigationProperty Name="Players" Relationship="Self.FK_Player_WholeName" FromRole="WholeName" ToRole="Player" />
+        </EntityType>
+        <Association Name="FK_Player_Alignment">
+          <End Role="Alignment" Type="Self.Alignment" Multiplicity="1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alignment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="AlignmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Background">
+          <End Role="Background" Type="Self.Background" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Background">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="BackgroundId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Bond">
+          <End Role="Bond" Type="Self.Bond" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bond">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="BondId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DonDoff_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="DonDoff" Type="Self.DonDoff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DonDoff">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Class_ClassFeature">
+          <End Role="ClassFeature" Type="Self.ClassFeature" Multiplicity="1" />
+          <End Role="Class" Type="Self.Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClassFeature">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="ClassFeatureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClassFeature_Class">
+          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="ClassFeature" Type="Self.ClassFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClassFeature">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Class">
+          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="MainClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Class1">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="SubClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Class2">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="TertiaryClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipment_DonDoff">
+          <End Role="DonDoff" Type="Self.DonDoff" Multiplicity="0..1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonDoff">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="DonDoffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FirstName_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="FirstName" Type="Self.FirstName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirstName">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FirstName_Race">
+          <End Role="Race" Type="Self.Race" Multiplicity="1" />
+          <End Role="FirstName" Type="Self.FirstName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Race">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirstName">
+              <PropertyRef Name="RaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WholeName_FirstName">
+          <End Role="FirstName" Type="Self.FirstName" Multiplicity="1" />
+          <End Role="WholeName" Type="Self.WholeName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirstName">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WholeName">
+              <PropertyRef Name="FirstNameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Flaw">
+          <End Role="Flaw" Type="Self.Flaw" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flaw">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="FlawId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LastName_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="LastName" Type="Self.LastName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LastName">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Height_Race">
+          <End Role="Race" Type="Self.Race" Multiplicity="1" />
+          <End Role="Height" Type="Self.Height" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Race">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Height">
+              <PropertyRef Name="RaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubRace_Height">
+          <End Role="Height" Type="Self.Height" Multiplicity="1" />
+          <End Role="SubRace" Type="Self.SubRace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Height">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubRace">
+              <PropertyRef Name="HeightId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Ideal">
+          <End Role="Ideal" Type="Self.Ideal" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ideal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="IdealId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LastName_Race">
+          <End Role="Race" Type="Self.Race" Multiplicity="1" />
+          <End Role="LastName" Type="Self.LastName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Race">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LastName">
+              <PropertyRef Name="RaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WholeName_LastName">
+          <End Role="LastName" Type="Self.LastName" Multiplicity="1" />
+          <End Role="WholeName" Type="Self.WholeName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LastName">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WholeName">
+              <PropertyRef Name="LastNameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_PersonalityTrait">
+          <End Role="PersonalityTrait" Type="Self.PersonalityTrait" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonalityTrait">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="PersonalityTraitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_WholeName">
+          <End Role="WholeName" Type="Self.WholeName" Multiplicity="1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WholeName">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="WholeNameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubRace_Race">
+          <End Role="Race" Type="Self.Race" Multiplicity="1" />
+          <End Role="SubRace" Type="Self.SubRace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Race">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubRace">
+              <PropertyRef Name="RaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Weight_Race">
+          <End Role="Race" Type="Self.Race" Multiplicity="1" />
+          <End Role="Weight" Type="Self.Weight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Race">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Weight">
+              <PropertyRef Name="RaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubRace_Size">
+          <End Role="Size" Type="Self.Size" Multiplicity="1" />
+          <End Role="SubRace" Type="Self.SubRace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Size">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubRace">
+              <PropertyRef Name="SizeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubRace_Speed">
+          <End Role="Speed" Type="Self.Speed" Multiplicity="1" />
+          <End Role="SubRace" Type="Self.SubRace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speed">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubRace">
+              <PropertyRef Name="SpeedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubRace_Weight">
+          <End Role="Weight" Type="Self.Weight" Multiplicity="1" />
+          <End Role="SubRace" Type="Self.SubRace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Weight">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubRace">
+              <PropertyRef Name="WeightId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Alignments" EntityType="Self.Alignment" />
+          <EntitySet Name="Backgrounds" EntityType="Self.Background" />
+          <EntitySet Name="Bonds" EntityType="Self.Bond" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Classes" EntityType="Self.Class" />
+          <EntitySet Name="ClassFeatures" EntityType="Self.ClassFeature" />
+          <EntitySet Name="DonDoffs" EntityType="Self.DonDoff" />
+          <EntitySet Name="Equipments" EntityType="Self.Equipment" />
+          <EntitySet Name="FirstNames" EntityType="Self.FirstName" />
+          <EntitySet Name="Flaws" EntityType="Self.Flaw" />
+          <EntitySet Name="Genders" EntityType="Self.Gender" />
+          <EntitySet Name="Heights" EntityType="Self.Height" />
+          <EntitySet Name="Ideals" EntityType="Self.Ideal" />
+          <EntitySet Name="LastNames" EntityType="Self.LastName" />
+          <EntitySet Name="PersonalityTraits" EntityType="Self.PersonalityTrait" />
+          <EntitySet Name="Players" EntityType="Self.Player" />
+          <EntitySet Name="Proficiencies" EntityType="Self.Proficiency" />
+          <EntitySet Name="Properties" EntityType="Self.Property" />
+          <EntitySet Name="Races" EntityType="Self.Race" />
+          <EntitySet Name="Sizes" EntityType="Self.Size" />
+          <EntitySet Name="Speeds" EntityType="Self.Speed" />
+          <EntitySet Name="SubRaces" EntityType="Self.SubRace" />
+          <EntitySet Name="Weapons" EntityType="Self.Weapon" />
+          <EntitySet Name="Weights" EntityType="Self.Weight" />
+          <EntitySet Name="WholeNames" EntityType="Self.WholeName" />
+          <AssociationSet Name="FK_Player_Alignment" Association="Self.FK_Player_Alignment">
+            <End Role="Alignment" EntitySet="Alignments" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Background" Association="Self.FK_Player_Background">
+            <End Role="Background" EntitySet="Backgrounds" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Bond" Association="Self.FK_Player_Bond">
+            <End Role="Bond" EntitySet="Bonds" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DonDoff_Category" Association="Self.FK_DonDoff_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="DonDoff" EntitySet="DonDoffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Class_ClassFeature" Association="Self.FK_Class_ClassFeature">
+            <End Role="ClassFeature" EntitySet="ClassFeatures" />
+            <End Role="Class" EntitySet="Classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClassFeature_Class" Association="Self.FK_ClassFeature_Class">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="ClassFeature" EntitySet="ClassFeatures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Class" Association="Self.FK_Player_Class">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Class1" Association="Self.FK_Player_Class1">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Class2" Association="Self.FK_Player_Class2">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipment_DonDoff" Association="Self.FK_Equipment_DonDoff">
+            <End Role="DonDoff" EntitySet="DonDoffs" />
+            <End Role="Equipment" EntitySet="Equipments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FirstName_Gender" Association="Self.FK_FirstName_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="FirstName" EntitySet="FirstNames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FirstName_Race" Association="Self.FK_FirstName_Race">
+            <End Role="Race" EntitySet="Races" />
+            <End Role="FirstName" EntitySet="FirstNames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WholeName_FirstName" Association="Self.FK_WholeName_FirstName">
+            <End Role="FirstName" EntitySet="FirstNames" />
+            <End Role="WholeName" EntitySet="WholeNames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Flaw" Association="Self.FK_Player_Flaw">
+            <End Role="Flaw" EntitySet="Flaws" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LastName_Gender" Association="Self.FK_LastName_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="LastName" EntitySet="LastNames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Gender" Association="Self.FK_Player_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Height_Race" Association="Self.FK_Height_Race">
+            <End Role="Race" EntitySet="Races" />
+            <End Role="Height" EntitySet="Heights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubRace_Height" Association="Self.FK_SubRace_Height">
+            <End Role="Height" EntitySet="Heights" />
+            <End Role="SubRace" EntitySet="SubRaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Ideal" Association="Self.FK_Player_Ideal">
+            <End Role="Ideal" EntitySet="Ideals" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LastName_Race" Association="Self.FK_LastName_Race">
+            <End Role="Race" EntitySet="Races" />
+            <End Role="LastName" EntitySet="LastNames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WholeName_LastName" Association="Self.FK_WholeName_LastName">
+            <End Role="LastName" EntitySet="LastNames" />
+            <End Role="WholeName" EntitySet="WholeNames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_PersonalityTrait" Association="Self.FK_Player_PersonalityTrait">
+            <End Role="PersonalityTrait" EntitySet="PersonalityTraits" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_WholeName" Association="Self.FK_Player_WholeName">
+            <End Role="WholeName" EntitySet="WholeNames" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubRace_Race" Association="Self.FK_SubRace_Race">
+            <End Role="Race" EntitySet="Races" />
+            <End Role="SubRace" EntitySet="SubRaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Weight_Race" Association="Self.FK_Weight_Race">
+            <End Role="Race" EntitySet="Races" />
+            <End Role="Weight" EntitySet="Weights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubRace_Size" Association="Self.FK_SubRace_Size">
+            <End Role="Size" EntitySet="Sizes" />
+            <End Role="SubRace" EntitySet="SubRaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubRace_Speed" Association="Self.FK_SubRace_Speed">
+            <End Role="Speed" EntitySet="Speeds" />
+            <End Role="SubRace" EntitySet="SubRaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubRace_Weight" Association="Self.FK_SubRace_Weight">
+            <End Role="Weight" EntitySet="Weights" />
+            <End Role="SubRace" EntitySet="SubRaces" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DndDMToolsModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Alignments">
+            <EntityTypeMapping TypeName="DndDMToolsModel.Alignment">
+              <MappingFragment StoreEntitySet="Alignment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AlignmentName" ColumnName="AlignmentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Backgrounds">
+            <EntityTypeMapping TypeName="DndDMToolsModel.Background">
+              <MappingFragment StoreEntitySet="Background">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BackgroundName" ColumnName="BackgroundName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bonds">
+            <EntityTypeMapping TypeName="DndDMToolsModel.Bond">
+              <MappingFragment StoreEntitySet="Bond">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="DndDMToolsModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="DndDMToolsModel.Class">
+              <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="HitDie" ColumnName="HitDie" />
+                <ScalarProperty Name="StartingEquipment" ColumnName="StartingEquipment" />
+                <ScalarProperty Name="ClassFeatureId" ColumnName="ClassFeatureId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassFeatures">
+            <EntityTypeMapping TypeName="DndDMToolsModel.ClassFeature">
+              <MappingFragment StoreEntitySet="ClassFeature">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="FeatureName" ColumnName="FeatureName" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DonDoffs">
+            <EntityTypeMapping TypeName="DndDMToolsModel.DonDoff">
+              <MappingFragment StoreEntitySet="DonDoff">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="DonTime" ColumnName="DonTime" />
+                <ScalarProperty Name="DoffTime" ColumnName="DoffTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipments">
+            <EntityTypeMapping TypeName="DndDMToolsModel.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="AC" ColumnName="AC" />
+                <ScalarProperty Name="ACDesc" ColumnName="ACDesc" />
+                <ScalarProperty Name="StrReq" ColumnName="StrReq" />
+                <ScalarProperty Name="StealthDisadvantage" ColumnName="StealthDisadvantage" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="DonDoffId" ColumnName="DonDoffId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FirstNames">
+            <EntityTypeMapping TypeName="DndDMToolsModel.FirstName">
+              <MappingFragment StoreEntitySet="FirstName">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName1" ColumnName="FirstName" />
+                <ScalarProperty Name="RaceId" ColumnName="RaceId" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flaws">
+            <EntityTypeMapping TypeName="DndDMToolsModel.Flaw">
+              <MappingFragment StoreEntitySet="Flaw">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="DndDMToolsModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Heights">
+            <EntityTypeMapping TypeName="DndDMToolsModel.Height">
+              <MappingFragment StoreEntitySet="Height">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MaxFoot" ColumnName="MaxFoot" />
+                <ScalarProperty Name="MaxInch" ColumnName="MaxInch" />
+                <ScalarProperty Name="MinFoot" ColumnName="MinFoot" />
+                <ScalarProperty Name="MinInch" ColumnName="MinInch" />
+                <ScalarProperty Name="RaceId" ColumnName="RaceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ideals">
+            <EntityTypeMapping TypeName="DndDMToolsModel.Ideal">
+              <MappingFragment StoreEntitySet="Ideal">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LastNames">
+            <EntityTypeMapping TypeName="DndDMToolsModel.LastName">
+              <MappingFragment StoreEntitySet="LastName">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LastName1" ColumnName="LastName" />
+                <ScalarProperty Name="RaceId" ColumnName="RaceId" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonalityTraits">
+            <EntityTypeMapping TypeName="DndDMToolsModel.PersonalityTrait">
+              <MappingFragment StoreEntitySet="PersonalityTrait">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PersonalityTraitName" ColumnName="PersonalityTraitName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="DndDMToolsModel.Player">
+              <MappingFragment StoreEntitySet="Player">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SubRaceId" ColumnName="SubRaceId" />
+                <ScalarProperty Name="MainClassId" ColumnName="MainClassId" />
+                <ScalarProperty Name="MainClassLevel" ColumnName="MainClassLevel" />
+                <ScalarProperty Name="SubClassId" ColumnName="SubClassId" />
+                <ScalarProperty Name="SubClassLevel" ColumnName="SubClassLevel" />
+                <ScalarProperty Name="TertiaryClassId" ColumnName="TertiaryClassId" />
+                <ScalarProperty Name="TertiaryClassLevel" ColumnName="TertiaryClassLevel" />
+                <ScalarProperty Name="WholeNameId" ColumnName="WholeNameId" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="AlignmentId" ColumnName="AlignmentId" />
+                <ScalarProperty Name="StrAbility" ColumnName="StrAbility" />
+                <ScalarProperty Name="DexAbility" ColumnName="DexAbility" />
+                <ScalarProperty Name="ConAbility" ColumnName="ConAbility" />
+                <ScalarProperty Name="IntAbility" ColumnName="IntAbility" />
+                <ScalarProperty Name="WisAbility" ColumnName="WisAbility" />
+                <ScalarProperty Name="ChaAbility" ColumnName="ChaAbility" />
+                <ScalarProperty Name="PersonalityTraitId" ColumnName="PersonalityTraitId" />
+                <ScalarProperty Name="IdealId" ColumnName="IdealId" />
+                <ScalarProperty Name="BondId" ColumnName="BondId" />
+                <ScalarProperty Name="FlawId" ColumnName="FlawId" />
+                <ScalarProperty Name="BackgroundId" ColumnName="BackgroundId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proficiencies">
+            <EntityTypeMapping TypeName="DndDMToolsModel.Proficiency">
+              <MappingFragment StoreEntitySet="Proficiency">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="SubraceId" ColumnName="SubraceId" />
+                <ScalarProperty Name="ProficiencyName" ColumnName="ProficiencyName" />
+                <ScalarProperty Name="ProficiencyDescription" ColumnName="ProficiencyDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Properties">
+            <EntityTypeMapping TypeName="DndDMToolsModel.Property">
+              <MappingFragment StoreEntitySet="Property">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+                <ScalarProperty Name="PropertyDescription" ColumnName="PropertyDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Races">
+            <EntityTypeMapping TypeName="DndDMToolsModel.Race">
+              <MappingFragment StoreEntitySet="Race">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sizes">
+            <EntityTypeMapping TypeName="DndDMToolsModel.Size">
+              <MappingFragment StoreEntitySet="Size">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Size1" ColumnName="Size" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Speeds">
+            <EntityTypeMapping TypeName="DndDMToolsModel.Speed">
+              <MappingFragment StoreEntitySet="Speed">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Speed1" ColumnName="Speed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubRaces">
+            <EntityTypeMapping TypeName="DndDMToolsModel.SubRace">
+              <MappingFragment StoreEntitySet="SubRace">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="STRMod" ColumnName="STRMod" />
+                <ScalarProperty Name="DEXMod" ColumnName="DEXMod" />
+                <ScalarProperty Name="CONMod" ColumnName="CONMod" />
+                <ScalarProperty Name="INTMod" ColumnName="INTMod" />
+                <ScalarProperty Name="WISMod" ColumnName="WISMod" />
+                <ScalarProperty Name="CHAMod" ColumnName="CHAMod" />
+                <ScalarProperty Name="HeightId" ColumnName="HeightId" />
+                <ScalarProperty Name="SizeId" ColumnName="SizeId" />
+                <ScalarProperty Name="WeightId" ColumnName="WeightId" />
+                <ScalarProperty Name="SpeedId" ColumnName="SpeedId" />
+                <ScalarProperty Name="RaceId" ColumnName="RaceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Weapons">
+            <EntityTypeMapping TypeName="DndDMToolsModel.Weapon">
+              <MappingFragment StoreEntitySet="Weapon">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Weapon1" ColumnName="Weapon" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Damage" ColumnName="Damage" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Weights">
+            <EntityTypeMapping TypeName="DndDMToolsModel.Weight">
+              <MappingFragment StoreEntitySet="Weight">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RaceId" ColumnName="RaceId" />
+                <ScalarProperty Name="MinWeight" ColumnName="MinWeight" />
+                <ScalarProperty Name="MaxWeight" ColumnName="MaxWeight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WholeNames">
+            <EntityTypeMapping TypeName="DndDMToolsModel.WholeName">
+              <MappingFragment StoreEntitySet="WholeName">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstNameId" ColumnName="FirstNameId" />
+                <ScalarProperty Name="LastNameId" ColumnName="LastNameId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

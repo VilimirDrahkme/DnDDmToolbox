@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c7cdc41cf8f941889c36a169a7064b6d" Name="Diagram1" ZoomLevel="47">
+        <EntityTypeShape EntityType="DndDMToolsModel.Alignment" Width="1.5" PointX="8.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.Background" Width="1.5" PointX="8.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.Bond" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.Category" Width="1.5" PointX="10.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.Class" Width="1.5" PointX="8.25" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.ClassFeature" Width="1.5" PointX="6" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.DonDoff" Width="1.5" PointX="13" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.Equipment" Width="1.5" PointX="15.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.FirstName" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.Flaw" Width="1.5" PointX="8.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.Gender" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.Height" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.Ideal" Width="1.5" PointX="8.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.LastName" Width="1.5" PointX="6" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.PersonalityTrait" Width="1.5" PointX="8.25" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.Player" Width="1.5" PointX="10.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.Proficiency" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.Property" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.Race" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.Size" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.Speed" Width="1.5" PointX="3" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.SubRace" Width="1.5" PointX="5.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.Weapon" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.Weight" Width="1.5" PointX="3" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="DndDMToolsModel.WholeName" Width="1.5" PointX="8.25" PointY="8.625" IsExpanded="true" />
+        <AssociationConnector Association="DndDMToolsModel.FK_Player_Alignment" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_Player_Background" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_Player_Bond" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_DonDoff_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_Class_ClassFeature" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_ClassFeature_Class" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_Player_Class" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_Player_Class1" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_Player_Class2" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_Equipment_DonDoff" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_FirstName_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_FirstName_Race" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_WholeName_FirstName" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_Player_Flaw" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_LastName_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_Player_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_Height_Race" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_SubRace_Height" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_Player_Ideal" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_LastName_Race" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_WholeName_LastName" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_Player_PersonalityTrait" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_Player_WholeName" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_SubRace_Race" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_Weight_Race" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_SubRace_Size" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_SubRace_Speed" ManuallyRouted="false" />
+        <AssociationConnector Association="DndDMToolsModel.FK_SubRace_Weight" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
